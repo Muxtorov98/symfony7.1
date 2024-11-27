@@ -130,4 +130,11 @@ class AbstractController extends \Symfony\Bundle\FrameworkBundle\Controller\Abst
 
         return $user;
     }
+
+    protected function responseNormalize(object $data, int $status = Response::HTTP_OK): Response
+    {
+        $jsonData = $this->serializer->serialize($data, 'json');
+
+        return new Response($jsonData, $status, ['Content-Type' => 'application/json']);
+    }
 }

@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -9,20 +7,14 @@ use App\Component\User\UserManager;
 use App\Controller\Base\AbstractController;
 use App\Entity\User;
 
-/**
- * Class CreateUserController
- *
- * @package App\Controller
- */
 class UserCreateAction extends AbstractController
 {
-    public function __invoke(User $data, UserFactory $userFactory, UserManager $userManager): User
+    public function __invoke(user $user, UserFactory $userFactory, UserManager $userManager): User
     {
-        print_r(11);
-        exit();
-        $this->validate($data);
+        $this->validate($user);
 
-        $user = $userFactory->create($data->getEmail(), $data->getPassword());
+        $user = $userFactory->create($user->getEmail(), $user->getPassword());
+
         $userManager->save($user, true);
 
         return $user;

@@ -104,9 +104,6 @@ use Symfony\Component\Validator\Constraints as Assert;
     ],
     normalizationContext: ['groups' => ['user:read', 'users:read']],
     denormalizationContext: ['groups' => ['user:write']],
-    extraProperties: [
-        'standard_put' => true,
-    ],
 )]
 #[ApiFilter(OrderFilter::class, properties: ['id', 'createdAt', 'updatedAt', 'email'])]
 #[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'email' => 'partial'])]
@@ -134,11 +131,11 @@ class User implements
     #[Assert\Length(min: 6, minMessage: 'Password must be at least {{ limit }} characters long')]
     private ?string $password = null;
 
-    #[ORM\Column(type: 'array')]
+    #[ORM\Column]
     #[Groups(['user:read'])]
     private array $roles = [];
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     #[Groups(['user:read'])]
     private ?DateTimeInterface $createdAt = null;
 
@@ -159,7 +156,7 @@ class User implements
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
@@ -229,7 +226,7 @@ class User implements
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
