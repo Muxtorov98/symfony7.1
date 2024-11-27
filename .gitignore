@@ -1,0 +1,37 @@
+# phpStorm
+/.idea
+
+# docker
+/docker/mysql/db
+/docker/nginx/logs
+/docker/php/bash_history
+/docker/php/error_logs
+/docker/postgres/db
+
+###> symfony/framework-bundle ###
+/.env.test
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+#/src/EventSubscriber/SuccessMessageSubscriber.php
+###< symfony/framework-bundle ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+# uploaded files
+/public/media
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpunit/phpunit ###
+/phpunit.xml.dist
+###< phpunit/phpunit ###

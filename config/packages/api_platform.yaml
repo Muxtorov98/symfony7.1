@@ -1,0 +1,41 @@
+api_platform:
+    title: Hello API Platform
+    version: 1.0.0
+
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: [ 'Content-Type', 'Authorization', 'Origin' ]
+
+        extra_properties:
+            standard_put: true
+            rfc_7807_compliant_errors: true
+
+        pagination_client_enabled: true
+        pagination_items_per_page: 10
+        pagination_client_items_per_page: true
+
+    mapping:
+        paths: [ '%kernel.project_dir%/src/Entity' ]
+
+    patch_formats:
+        json: [ 'application/merge-patch+json' ]
+
+    error_formats:
+        json-problem:
+            mime_types: [ 'application/problem+json' ]
+
+        jsonld:
+            mime_types: [ 'application/ld+json']
+
+    collection:
+        pagination:
+            enabled_parameter_name: pagination # optional
+            items_per_page_parameter_name: PerPage
+
+    swagger:
+        versions: [3]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
