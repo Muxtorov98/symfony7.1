@@ -44,7 +44,8 @@ use Symfony\Component\Validator\Constraints as Assert;
             security: "object == user || is_granted('ROLE_ADMIN')",
         ),
         new Post(
-            controller: UserCreateAction::class,
+           controller: UserCreateAction::class,
+           validate: false
         ),
         new Put(
             denormalizationContext: ['groups' => ['user:put:write']],
@@ -107,6 +108,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 #[ApiFilter(OrderFilter::class, properties: ['id', 'createdAt', 'updatedAt', 'email'])]
 #[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'email' => 'partial'])]
+#[UniqueEntity('email', message: 'This email is already used')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements
     UserInterface,
