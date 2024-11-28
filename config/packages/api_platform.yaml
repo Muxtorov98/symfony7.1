@@ -1,5 +1,6 @@
 api_platform:
-    title: Hello API Platform
+    title: API Platform starter-kit
+    description: UPDATE BY TULQIN MUXTOROV
     version: 1.0.0
 
     use_symfony_listeners: true
