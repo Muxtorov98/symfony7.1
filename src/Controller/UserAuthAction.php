@@ -39,7 +39,7 @@ class UserAuthAction extends AbstractController
             $this->throwInvalidCredentials();
         }
 
-        return $this->responseNormalized($tokensCreator->create($user));
+        return $this->responseNormalize($tokensCreator->create($user));
     }
 
     /**
